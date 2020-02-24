@@ -48,12 +48,13 @@ public class CAI1 {
 	
 	public static void Quiz() {
 		SecureRandom randNum = new SecureRandom();
-		 int randNum1 = randNum.nextInt(10);
-		 int randNum2 = randNum.nextInt(10);
-		 
-		 int correctAnswer = randNum1 * randNum2; 
+		
 		 
 		 while(true) {
+			 int randNum1 = randNum.nextInt(10);
+			 int randNum2 = randNum.nextInt(10);
+			 
+			 int correctAnswer = randNum1 * randNum2; 
 			 askQuestion(randNum1 , randNum2);
 			int  userAnswer = readResponse();
 			  
@@ -63,7 +64,7 @@ public class CAI1 {
 		 }
 		 else {
 			 displayIncorrectResponse();
-			 break;
+			 
 			  }
 		 }
 	}

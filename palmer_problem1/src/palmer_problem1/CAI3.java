@@ -3,13 +3,19 @@ package palmer_problem1;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
-public class CAI2 {
+public class CAI3 {
+
+	public static void main(String[] args) {
+		
+		 Quiz();
+	
+	}
 	
 	public static void askQuestion(int randNum1 , int randNum2) {
 		// asks the user a multiplication problem 
 		
 		
-		System.out.println("How much is " + randNum1+ "times "+randNum2+ "?");
+		System.out.println("How much is " + randNum1+ " times "+randNum2+ "?");
 		
 	}
 	
@@ -68,7 +74,6 @@ public class CAI2 {
         case 1:
 		  System.out.println("No. Please try again.");
 		  break;
-		
         case 2:
 		  System.out.println("Wrong. Try once more.");
 		  break;
@@ -81,39 +86,51 @@ public class CAI2 {
         }
 	}
 	
+	
+	public static void displayCompletionMessage(int correct) {
+		double calculatePercentage = ((double)correct/10.0)*100.0;
+		System.out.println("Percentage is:" + calculatePercentage);	
+		
+		if (calculatePercentage >= 75) {
+			System.out.println("Congratulations, you are ready to go to the next level!");
+		}
+	    else {
+		
+		    System.out.println("Please ask your teacher for extra help.");
+		}
+	}
 	public static void Quiz() {
 		SecureRandom randNum = new SecureRandom();
 		
-		int userAnswer = -1; 
+		Scanner sc = new Scanner(System.in);
+
 		 
-		 while(true) {
+		 int correct =0;
+		 
+		 for(int i=1;i<= 10;i++){
 			 int randNum1 = randNum.nextInt(10);
 			 int randNum2 = randNum.nextInt(10);
-			 
 			 int correctAnswer = randNum1 * randNum2; 
 			 askQuestion(randNum1 , randNum2);
-			  userAnswer = readResponse();
+			 int userAnswer = readResponse();
 			  
 		 if(isAnswerCorrect(correctAnswer,userAnswer)) {
-			 displayCorrectResponse(); 
-			 break;
+			 displayCorrectResponse();
+			  correct++;
 			 }
-		 else {
-			 
+		 else 
 			 displayIncorrectResponse();
-			 break;
-			  }
+			  
 		 }
+		  displayCompletionMessage(correct);
+		 
+		   System.out.println("Do you want to solve another new problem(y/n)?");
+	       char choice=sc.next().charAt(0);
+	       if(choice=='y')
+	           Quiz();       
+	       else
+	           System.exit(0);   
+	       sc.close();
 	}
-  public static void main(String[] args) {
-		
-		 Quiz();
-	
-	}
-	
+  
 }
-
-
-
-
-
